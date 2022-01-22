@@ -1,1 +1,1 @@
-web: gunicorn heatherhop.wsgi
+web: gunicorn heatherhope.wsgi
