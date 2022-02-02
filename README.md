@@ -9,7 +9,8 @@ The Heather Hope Campsite is a fictional campsite set in the vast expanse of the
 The app will largely be managed by the campsite staff and thus has two main user perspectives: customers and the business.
 
 ## User Stories
-This project has been tracked using [GitHub Projects](https://github.com/users/mmoore483/projects/2)
+This project has been tracked using [GitHub Projects](https://github.com/users/mmoore483/projects/2) which contains all the current user stories.
+
 
 ## Structure
 Whilst the focus of this project is on the booking capability, the wireframes consider other elements of the user and business experience that may be implemented in the future.
@@ -94,6 +95,7 @@ The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrollin
 - A Contact Form that automates sending an email to business
 - Restrict booking date selection based on database query
 - A date picker for the booking dates selection in Booking page
+- Automated Testing
 
 ## Testing
 
@@ -150,7 +152,6 @@ The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrollin
 ### Final Deployment steps
 Once code changes have been completed and tested on localhost, the application can be prepared for Heroku deployment as follows:
 - Set DEBUG flag to False in settings.py
-- Ensure this line exists in settings.py to make summernote work on the deployed environment (CORS security feature): X_FRAME_OPTIONS = 'SAMEORIGIN'
 - Ensure requirements.txt is up to date using the command pip3 freeze --local > requirements.txt
 - Push files to GitHub
 - In the Heroku Config Vars for the application delete this environment variable DISABLE_COLLECTSTATIC
