@@ -77,7 +77,7 @@ class Booking(models.Model):
     date_from = models.DateField(default=timezone.now)
     date_to = models.DateField(default=timezone.now)
 
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default="P")
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

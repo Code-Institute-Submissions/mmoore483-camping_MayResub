@@ -7,12 +7,11 @@
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <form>
                             <h3>Make a booking:</h3>
-                            <form method="post" style="margin-top: 1.3em;">
+                            <form method="POST" style="margin-top: 1.3em;">
                                 {{ booking_form | crispy }}
                                 {% csrf_token %}
-                                 <button type="submit" class="btn btn-signup btn-lg">Submit
+                                 <button type="submit" value="ok" class="btn btn-signup btn-lg">Submit
                                 </button>
                         </form>
                     </div>
