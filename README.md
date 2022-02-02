@@ -99,26 +99,15 @@ The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrollin
 
 ## Testing
 
-### Automated Testing
-- 
-
-
-### Manual Testing
-- 
-
 ### Validator Testing
-- HTML [W3C Validator](https://validator.w3.org/)
+- HTML [W3C Validator](https://validator.w3.org/) No Errors on the Home, Log In, Register or Book pages.
 
-- CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/)
-
-- JS [JShint](https://jshint.com/)
+- CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/) No errors but some warnings about variable use.
 
 - Python [PEP8 online validator](http://pep8online.com/)
 
-
-### Unfixed Bugs
-
-- 
+### Bugs
+- Static files loading incorrectly on heroku app so styling is not displaying
 
 # Deployment
 
