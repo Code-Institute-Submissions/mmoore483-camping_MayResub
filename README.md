@@ -5,6 +5,8 @@ Find the app [here](https://heatherhope-camp.herokuapp.com/)
 # About
 The Heather Hope Campsite is a fictional campsite set in the vast expanse of the North York Moors, a place to go for respite from a busy life and adventure. Ever popular, the campsite requires an app with integrated booking service to manage bookings and avoid disappointment for customers.
 
+![BookingPage](READMEImages/BookActual.PNG)
+
 # User Experience
 The app will largely be managed by the campsite staff and thus has two main user perspectives: customers and the business.
 
@@ -104,10 +106,10 @@ The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrollin
 
 - CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/) No errors but some warnings about variable use.
 
-- Python [PEP8 online validator](http://pep8online.com/)
+- Python [PEP8 online validator](http://pep8online.com/) No errors beyond formatting.
 
 ### Bugs
-- Static files loading incorrectly on heroku app so styling is not displaying
+- There has been some issues with the heroku app deployment including static files loading incorrectly and Internal Server Errors. I cannot confirm whether everything is working correctly at the time of project submission.
 
 # Deployment
 
