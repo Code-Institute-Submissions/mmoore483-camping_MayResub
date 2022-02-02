@@ -35,6 +35,6 @@ class BookingPage(View):
                 else:
                     available = False
             else:
-                return HttpResponse("issue")
-        return HttpResponse(queryset)
+                return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('home'))
 
