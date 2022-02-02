@@ -1,108 +1,186 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# A Restaurant Booking - The Moore Hen
+Portfolio Project 4 Full Stack Toolkit - Code Institute
+Find the app [here](https://heatherhope-camp.herokuapp.com/)
 
-Welcome mmoore483,
+# About
+The Heather Hope Campsite is a fictional campsite set in the vast expanse of the North York Moors, a place to go for respite from a busy life and adventure. Ever popular, the campsite requires an app with integrated booking service to manage bookings and avoid disappointment for customers.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+# User Experience
+The app will largely be managed by the campsite staff and thus has two main user perspectives: customers and the business.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## User Stories
+This project has been tracked using [GitHub Projects](https://github.com/users/mmoore483/projects/2)
 
-## Gitpod Reminders
+## Structure
+Whilst the focus of this project is on the booking capability, the wireframes consider other elements of the user and business experience that may be implemented in the future.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+<hr>
 
-`python3 -m http.server`
+### WireFrames
 
-A blue button should appear to click: _Make Public_,
+<strong>Home Page</strong>
 
-Another blue button should appear to click: _Open Browser_.
+The home page will be responsive with the top menu dropping into a hamburger icon on smaller screen sizes as well as a sticky nav bar to ensure the user can always get to the booking page within a single click. To achieve this, the [scrolling nav](https://startbootstrap.com/template/scrolling-nav) BootStrap theme will be used.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+![Home Page](READMEImages/WFHome.png)
 
-A blue button should appear to click: _Make Public_,
+<strong>Log In/Sign Up</strong>
 
-Another blue button should appear to click: _Open Browser_.
+The user requires capability to sign up/log in so that they can make an account and manage their own bookings. Using an email address rather than a username should make it easier for users to remember their details for a site account that is likely to be rarely used. Additionally, the business can keep customer details on file in case of emergencies or last minute cancellations. The majority of the sign up and log in functionality will be achieved using the Django admin site and account templates with the same BootStrap theme as other pages.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+![Log In Page](READMEImages/WFLogin.png)
 
-To log into the Heroku toolbelt CLI:
+<strong>Book</strong>
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The booking page will be kept simple with the desire pitch type and dates (preferably with a date picker as this is a better visual for the user but can also restrict data entry). One the submission button has been pressed, the database will be queried and availability displayed back to the user.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+![Booking Page](READMEImages/WFBooking.png)
 
-------
+<strong>Photos</strong>
 
-## Release History
+The photo page is for the business to entice customers with beautiful images of the campsite. The page layout is simple three column on large screens and one column on small screens. This is a nice-to-have feature that won't be a priority.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+![Photo Page](READMEImages/WFPhotos.png)
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+<strong>Contact Us</strong>
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+The Contact Us Page is another form page that allows the user to make enquiries to the business easily. This is a simple form that will automate an email sent to the business and a copy of the email sent to the customer. 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+![Conact Page](READMEImages/WFContactPage.png)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+<hr>
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Database Planning
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+There needs to be a user table that will be used for account management and for the business to be able to contact customers. This table will contain all details about the customer from email, to name, to phone number etc. The only compulsory fields will be the auto-generated customer_id and the email address as this allows for a unique customer.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+There needs to be an area to set business variables such as the different camping pitch types and the quantity of each. This is required to check there is availability. These will only be seen in the admin panel and can only be changed by "superusers" or administrators of the site. Therefore the table is not directly linked but will be queried to ensure that there is availability.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+The final table is for the bookings themselves, this will tie in the customer_id where one customer can have multiple bookings however each booking can only have one customer. Therefore this is a one (customer_id) to many (Booking) relationship. The Booking table will also have a unique ID, this will also allow users to query the status of their booking in communication with the business. The booking also requires the pitch type and the dates at which the booking is expected to take place. The status will be pending if available, confirmed if accepted by the business administrators and cancelled if rejected or the user chooses to cancel their booking. Finally, the created_on field can be used to sort bookings so that the business administrators can accept bookings on a first-come-first-serve basis. 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+![Database Diagram](READMEImages/DBDiagram.png)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+<hr>
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Comment on Logic
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+1) The customer will fill in the booking form and press submit
+2) The app will read in submitted information and filter the booking table by dates and pitch type
+3) Using the customer requested pitch type, the Business Variables table will be queried for the quantity of that pitch type available
+4) The number of results from step 2 will be compared to step 3 and if less, then the form will be saved to the database and the status will be set to pending. A notification should be displayed to the user that their booking is pending business confirmation. If the value is higher, then the customer will be told that the dates requested are unavailable and give them the option to try again.
+5) The business user can then change the status and this will send a notification the customer account of the outcome. 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Surface
 
-------
+The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrolling-nav) has been used and unadapted at this time - a future iteration is planned to use a heather filled hero-image with shades of purple used to accent the theme. 
 
-## FAQ about the uptime script
+## Features
 
-**Why have you added this script?**
+### Existing Features
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+- Generic Home Page
+- Sign Up
+- Log In
+- Create a booking (without confirmation)
 
-**How will this affect me?**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Features Left to Implement
+- Confirmation of booking request
+- Notification of booking status
+- Option for customer to cancel booking
+- Personalised Home Page
+- A Photo Page
+- A Contact Form that automates sending an email to business
+- Restrict booking date selection based on database query
+- A date picker for the booking dates selection in Booking page
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Testing
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Automated Testing
+- 
 
-**So….?**
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+### Manual Testing
+- 
 
-**Can I opt out?**
+### Validator Testing
+- HTML [W3C Validator](https://validator.w3.org/)
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/)
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+- JS [JShint](https://jshint.com/)
 
-**Anything more?**
+- Python [PEP8 online validator](http://pep8online.com/)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+### Unfixed Bugs
 
-Happy coding!
+- 
+
+# Deployment
+
+### Create Application and Postgres DB on Heroku
+- Log in to Heroku at https://heroku.com - create an account if needed.
+- From the Heroku dashboard, click the Create new app button.  For a new account an icon will be visible on screen to allow you to Create an app, otherwise a link to this function is located under the New dropdown menu at the top right of the screen.
+- On the Create New App page, enter a unique name for the application and select region.  Then click Create app.
+- On the Application Configuration page for the new app, click on the Resources tab.
+- In the Add-ons search bar enter "Postgres" and select "Heroku Postgres" from the list - click the "Submit Order Form" button on the pop-up dialog.
+- Next, click on Settings on the Application Configuration page and click on the "Reveal Config Vars" button - check the DATABASE_URL has been automatically set up. 
+- Add a new Config Var called DISABLE_COLLECTSTATIC and assign it a value of 1.
+- Add a new Config Var called SECRET_KEY and assign it a value - any random string of letters, digits and symbols.
+- The settings.py file should be updated to use the DATABASE_URL and SECRET_KEY environment variable values as follows :
+
+  - DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+
+  - SECRET_KEY = os.environ.get('SECRET_KEY')
+
+- In Gitpod, in the project terminal window, to initialize the data model in the postgres database, run the command python3 manage.py migrate 
+- Make sure the project requirements.txt file is up to date with all necessary supporting files by entering the command pip3 freeze --local > requirements.txt
+- Commit and push any local changes to GitHub.
+- In order to be able to run the application on localhost, add SECRET_KEY and DATABASE_URL and their values to env.py
+
+### Connect the Heroku app to the GitHub repository
+- Go to the Application Configuration page for the application on Heroku and click on the Deploy tab.
+- Select GitHub as the Deployment Method and if prompted, confirm that you want to connect to GitHub. Enter the name of the github repository (the one used for this project is (https://github.com/mmoore483/camping) and click on Connect to link up the Heroku app to the GitHub repository code.
+- Scroll down the page and choose to either Automatically Deploy each time changes are pushed to GitHub, or Manually deploy - for this project Manual Deploy was selected.
+- The application can be run from the Application Configuration page by clicking on the Open App button.
+- The live link for this project is (https://heatherhope-camp.herokuapp.com/)
+
+### Final Deployment steps
+Once code changes have been completed and tested on localhost, the application can be prepared for Heroku deployment as follows:
+- Set DEBUG flag to False in settings.py
+- Ensure this line exists in settings.py to make summernote work on the deployed environment (CORS security feature): X_FRAME_OPTIONS = 'SAMEORIGIN'
+- Ensure requirements.txt is up to date using the command pip3 freeze --local > requirements.txt
+- Push files to GitHub
+- In the Heroku Config Vars for the application delete this environment variable DISABLE_COLLECTSTATIC
+- On the Heroku dashboard go to the Deploy tab for the application and click on deploy branch
+
+
+## Forking
+
+To trial changes to the site without affecting the original, the GitHub Repository can be forked.
+
+- Log into GitHub and locate the desired repository
+- In the top right, click the Fork button.
+
+## Cloning
+
+[Cloning](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) is useful for a multitude of reasons: to contribute to a project, to trial changes, to fix merge conflicts, add or remove files, and push larger commits.
+
+- Log into your GitHub then find the gitpod repository
+- Click the Code button
+- If cloning with HTTPS, click the clipboard icon to copy the link
+- Open Gitbash
+- Change the current working directory to the location where you want the cloned directory to be.
+- Type git clone, and then paste the URL you copied earlier.
+- Press enter to create your local clone
+
+# Credits
+
+- Code Institute for the template and course content
+- [BootStrap Theme](https://startbootstrap.com/template/scrolling-nav)
+- The Very Academy YouTube for [videos](https://www.youtube.com/watch?v=Ae7nc1EGv-A&ab_channel=VeryAcademy) on creating administration panels
+- LucidCharts for diagramming including the above database diagram
+- Mentor: Brian Machari
+- Tutor Support: James 
