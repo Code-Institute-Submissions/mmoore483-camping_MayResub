@@ -6,6 +6,8 @@ from .forms import BookingForm
 from datetime import timedelta
 
 """Render the home page """
+
+
 class Home(View):
     def get(self, request):
         return render(request, "index.html")
@@ -15,9 +17,10 @@ class BookingPage(View):
     def get(self, request):
         return render(request, "booking.html", {"booking_form": BookingForm()})
 
-"""Receive post data, filter the booking database and compare the number of bookings
-in that date range to the number of pitches set in business variable. if available,
-save the booking and return to the home page. If not, return to the home page """
+
+# Receive post data, filter the booking database and compare the number of bookings
+# in that date range to the number of pitches set in business variable. if available,
+# save the booking and return to the home page. If not, return to the home page
     def post(self, request, *args, **kwargs):
         available = bool
         if request.method == "POST":
@@ -27,8 +30,7 @@ save the booking and return to the home page. If not, return to the home page ""
                 pitch_type = form.cleaned_data.get("pitch_type")
                 date_from = form.cleaned_data.get("date_from")
                 date_to = form.cleaned_data.get("date_to")
-                queryset = (
-                    Booking.objects.filter(
+                queryset = (Booking.objects.filter(
                         pitch_type=pitch_type,
                         date_from__range=[date_from, (date_to - timedelta(days=1))],
                     )
