@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import django_heroku
 
 if os.path.isfile("env.py"):
     import env
@@ -162,3 +163,5 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'booking.NewUser'
+
+django_heroku.settings(locals())
