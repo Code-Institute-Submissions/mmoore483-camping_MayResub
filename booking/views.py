@@ -24,10 +24,9 @@ class BookingPage(View):
 # save the booking and return to the home page. If not, return to the home page
 
     def post(self, request, *args, **kwargs):
-        available = bool
         if request.method == "POST":
             form = BookingForm(data=request.POST)
-
+            unavailable = False
             if form.is_valid():
                 pitch_type = form.cleaned_data.get("pitch_type")
                 date_from = form.cleaned_data.get("date_from")
@@ -46,9 +45,18 @@ class BookingPage(View):
 
                 if queryset < BV[0]:
                     form.save()
-                    available = True
+                    return HttpResponseRedirect(reverse("booking_success"))
                 else:
-                    available = False
+                    context = {
+                        "unavailable": True,
+                        "booking_form": BookingForm()
+                    }
+                    return render(request, "booking.html", context)
+
             else:
                 return HttpResponseRedirect(reverse("home"))
-        return HttpResponseRedirect(reverse("home"))
+
+
+class BookingSuccess(View):
+    def get(self, request):
+        return render(request, "booking_success.html")
