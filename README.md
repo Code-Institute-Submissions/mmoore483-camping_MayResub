@@ -1,4 +1,4 @@
-# A Restaurant Booking - The Moore Hen
+# Heather Hope Camping
 Portfolio Project 4 Full Stack Toolkit - Code Institute
 Find the app [here](https://heatherhope-camp.herokuapp.com/)
 

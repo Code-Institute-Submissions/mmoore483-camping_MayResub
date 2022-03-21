@@ -12,15 +12,17 @@ class Home(View):
     def get(self, request):
         return render(request, "index.html")
 
-"""Render the booking page """
+
 class BookingPage(View):
     def get(self, request):
+        """Render the booking page """
         return render(request, "booking.html", {"booking_form": BookingForm()})
 
 
 # Receive post data, filter the booking database and compare the number of bookings
 # in that date range to the number of pitches set in business variable. if available,
 # save the booking and return to the home page. If not, return to the home page
+
     def post(self, request, *args, **kwargs):
         available = bool
         if request.method == "POST":
@@ -31,9 +33,10 @@ class BookingPage(View):
                 date_from = form.cleaned_data.get("date_from")
                 date_to = form.cleaned_data.get("date_to")
                 queryset = (Booking.objects.filter(
-                        pitch_type=pitch_type,
-                        date_from__range=[date_from, (date_to - timedelta(days=1))],
-                    )
+                    pitch_type=pitch_type,
+                    date_from__range=[date_from,
+                                      (date_to - timedelta(days=1))],
+                )
                     .exclude(status="cancelled")
                     .count()
                 )
