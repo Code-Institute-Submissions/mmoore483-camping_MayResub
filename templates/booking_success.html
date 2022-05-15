@@ -4,11 +4,25 @@
 
 <!-- About section-->
 <section id="about">
-    <div class="container px-4">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
-                <h1>Booking Successful!</h1>
+    <div class="container pt-5">
+        <div class="row pt-5">
+            <div class="col-12">
+                <h2 class="text-center">Booking Successful!</h2>
             </div>
+        </div>
+        <div class="col-12 text-center">
+            <a href="{% url 'home' %}" class="btn mt-2 mb-5">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="">Return Home</span>
+            </a>
+            <a href="{% url 'booking' %}" class="btn mt-2 mb-5">
+                <span class="">Book Again</span>
+                <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
         </div>
     </div>
 </section>
