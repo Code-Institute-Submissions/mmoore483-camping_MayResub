@@ -1,7 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
 
 {% block content %}
+<div class="container-fluid pt-5">
+    <div>
+        <h2 class="text-center text-hhblack pt-5">Welcome To Heather Hope Camping</h2>
+        <p class="text-center text-hhblack py-4">Come and camp with us in the beautiful North York Moors</p>
+    </div>
+    <div class="button-wrapper text-center py-2">
+        <a href="{% url 'booking' %}" class="btn btn-lg py-3 cta-btn text-hhwhite rounded-pill">
+            Book With Us
+        </a>
+    </div>
+</div>
 
-       
-
-{%endblock%}
+{% endblock %}

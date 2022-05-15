@@ -20,6 +20,7 @@ body {
     font-family: 'Lato';
 }
 
+/* General Styles for base.html */
 footer, nav {
     background-color: var(--HHblack);
 }
@@ -28,5 +29,26 @@ footer, nav {
     color: var(--HHwhite) !important;
 }
 
+.text-hhblack {
+    color: var(--HHblack) !important;
+}
 
+h2 {
+    font-size: 2em;
+    font-family: 'Arima Madurai', cursive;
+}
+
+p {
+    font-size: 1.25em;
+    font-family: 'Lato', open-sans;
+}
+
+.footer-text {
+    font-size: 1em;
+}
+
+/* Home page styles */
+.cta-btn {
+    background-color: rgba(168, 65, 137, 0.75);
+}
 
