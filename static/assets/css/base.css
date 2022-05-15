@@ -21,6 +21,17 @@ body {
 }
 
 /* General Styles for base.html */
+
+.overlay {
+    height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+    background-color: white;
+    z-index: -1;
+}
+
 footer, nav {
     background-color: var(--HHblack);
 }
@@ -38,9 +49,13 @@ h2 {
     font-family: 'Arima Madurai', cursive;
 }
 
-p {
+h4 {
     font-size: 1.25em;
     font-family: 'Lato', open-sans;
+}
+
+p {
+    font-size: 1em;
 }
 
 .footer-text {
