@@ -66,3 +66,6 @@ p {
     background-color: rgba(168, 65, 137, 0.75);
 }
 
+.table {
+    background-color: var(--HHwhite);
+}

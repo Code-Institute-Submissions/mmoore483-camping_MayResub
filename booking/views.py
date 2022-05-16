@@ -59,3 +59,12 @@ class BookingPage(View):
 class BookingSuccess(View):
     def get(self, request):
         return render(request, "booking_success.html")
+
+
+class BookingHistory(View):
+    def get(self, request):
+        bookings = Booking.objects.filter(customer_id=self.request.user.customer_id)
+        context = {
+            "bookings": bookings,
+        }
+        return render(request, "booking_history.html", context)

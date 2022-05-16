@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- About section-->
+<section id="about">
+    <div class="container pt-5">
+        <div class="row pt-5">
+            <div class="col-12">
+                <h2 class="text-center">Booking History</h2>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped text-center table-sm">
+                <thead class="thead-dark">
+                    <th>Booking ID</th>
+                    <th>Pitch Type</th>
+                    <th>Date From</th>
+                    <th>Date To</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>
+                            {{ booking.booking_id }}
+                        </td>
+                        <td>
+                            {{ booking.pitch_type }}
+                        </td>
+                        <td>
+                            {{ booking.date_from }}
+                        </td>
+                        <td>
+                            {{ booking.date_to }}
+                        </td>
+                        <td>
+                            {{ booking.status }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 text-center">
+            <a href="{% url 'home' %}" class="btn cta-btn mt-2 mb-5">
+                <span class="icon text-hhwhite">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-hhwhite">Return Home</span>
+            </a>
+            <a href="{% url 'booking' %}" class="btn cta-btn mt-2 mb-5">
+                <span class="text-hhwhite">Book Again</span>
+                <span class="icon text-hhwhite">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{%endblock%}
