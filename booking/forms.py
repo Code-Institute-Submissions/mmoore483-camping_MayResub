@@ -8,4 +8,4 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ("customer_id", "pitch_type", "date_from", "date_to")
-
+        excluded = ("created_on", "status")

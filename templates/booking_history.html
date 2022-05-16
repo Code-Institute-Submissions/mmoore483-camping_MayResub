@@ -42,7 +42,7 @@
 
                             {% now "Y-m-d" as todays_date %}
                             {% if todays_date < booking.date_from|date:"Y-m-d" %}
-                            <a class="text-danger" href="{% url 'booking_detail' booking.booking_id %}"><p>Edit Booking</p></a>
+                            <a class="text-danger" href="{% url 'booking_update' booking.booking_id %}"><p>Edit Booking</p></a>
                             {% else %}
                             <p>unavailable</p>
                             {% endif %}
