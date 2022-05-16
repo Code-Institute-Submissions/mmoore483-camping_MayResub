@@ -69,3 +69,8 @@ p {
 .table {
     background-color: var(--HHwhite);
 }
+
+.flex-central {
+    display: flex;
+    justify-content: center;
+}
