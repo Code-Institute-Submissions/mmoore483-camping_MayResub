@@ -39,8 +39,14 @@
                             {{ booking.status }}
                         </td>
                         <td>
-                            {% if booking.date_from}
-                            {{ booking.status }}
+
+                            {% now "Y-m-d" as todays_date %}
+                            {% if todays_date < booking.date_from|date:"Y-m-d" %}
+                            <a class="text-danger" href="{% url 'booking_detail' booking.booking_id %}"><p>Edit Booking</p></a>
+                            {% else %}
+                            <p>unavailable</p>
+                            {% endif %}
+
                         </td>
                     </tr>
                     {% endfor %}
@@ -65,3 +71,4 @@
 </section>
 
 {%endblock%}
+

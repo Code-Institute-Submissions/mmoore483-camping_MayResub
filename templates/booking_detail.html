@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- About section-->
+<div class="overlay"></div>
+<section id="about">
+    <div class="container px-4 pt-5">
+        <div class="row gx-4 justify-content-center pt-5">
+            <div class="col-lg-8">
+                {% if user.is_authenticated %}
+                    {% if unavailable %}
+                        <p>That date range is unavailable, please choose another</p>
+                    {% endif %}
+                <h3>Make a booking:</h3>
+                <form method="POST" class="text-center text-hhblack pt-5">
+                    {% csrf_token %}
+                    {{ booking_form.customer_id.as_hidden }}
+                    {{ booking_form.pitch_type | as_crispy_field }}
+                    {{ booking_form.date_from| as_crispy_field }}
+                    {{ booking_form.date_to| as_crispy_field  }}
+                    <button type="submit" value="ok" class="btn cta-btn text-hhwhite">Submit
+                    </button>
+                </form>
+            
+                {% else %}
+                <div class="col-12 pt-5 text-center">
+                <h3 class="pt-5">You need to sign up before you can make a booking</h3>
+                <a href="{% url 'account_signup' %}" class="btn">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span>Sign Up</span>
+                </a>
+                <a href="{% url 'account_login' %}" class="btn">
+                    <span class="">Login</span>
+                    <span class="icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

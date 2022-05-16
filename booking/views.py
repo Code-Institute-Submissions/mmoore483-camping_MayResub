@@ -72,3 +72,9 @@ class BookingHistory(View):
             "bookings": bookings,
         }
         return render(request, "booking_history.html", context)
+
+
+class BookingDetail(View):
+    def post(self, request, *args, **kwargs):
+
+        return render(request, "booking_detail.html", context)
