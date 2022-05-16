@@ -110,3 +110,15 @@ def booking_update(request, pk):
         "booking_form": form
     }
     return render(request, "booking.html", context)
+
+
+def booking_delete(request, pk):
+    """Open a specific booking and delete it"""
+    booking = Booking.objects.get(booking_id=pk)
+    if request.method == "POST":
+        booking.delete()
+        return redirect("booking_history")
+    context = {
+        "booking": booking
+    }
+    return render(request, 'delete_check.html', context)

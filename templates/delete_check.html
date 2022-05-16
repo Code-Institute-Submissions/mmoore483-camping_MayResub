@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-5">
+    <div>
+        <h2 class="text-center text-hhblack pt-5">Are you sure you want to cancel your booking?</h2>
+        <h4 class="text-center text-hhblack py-4">We will surely miss having your company!</h4>
+    </div>
+    <div class="button-wrapper text-center py-2">
+        <p>{{ booking }}</p>
+        <form method="POST" action="{% url 'booking_delete' booking.booking_id %}">
+            {% csrf_token %}
+            <a href="{% url 'booking_history' %}" class="btn btn-lg py-3 cta-btn text-hhwhite text-uppercase">
+                Return
+            </a>
+            <input type="submit" name="Confirm" class="btn btn-lg py-3 cta-btn text-hhwhite text-uppercase"></input>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}
