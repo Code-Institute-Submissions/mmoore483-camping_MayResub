@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import Booking, BusinessVariables, NewUser
 from .forms import BookingForm
 from datetime import timedelta
+from django.contrib import messages
 
 
 def index(request):
@@ -98,7 +99,8 @@ def booking_update(request, pk):
 
             if queryset < BV[0]:
                 form.save()
-                return HttpResponseRedirect(reverse("booking_success"))
+                messages.success(request, 'Booking updated.')
+                return redirect("booking_history")
             else:
                 context = {
                     "unavailable": True,
@@ -117,6 +119,7 @@ def booking_delete(request, pk):
     booking = Booking.objects.get(booking_id=pk)
     if request.method == "POST":
         booking.delete()
+        messages.error(request, 'Booking Cancelled')
         return redirect("booking_history")
     context = {
         "booking": booking
