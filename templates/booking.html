@@ -5,8 +5,8 @@
 <!-- About section-->
 <div class="overlay"></div>
 <section id="about">
-    <div class="container px-4">
-        <div class="row gx-4 justify-content-center">
+    <div class="container px-4 pt-5">
+        <div class="row gx-4 justify-content-center pt-5">
             <div class="col-lg-8">
                 {% if user.is_authenticated %}
                     {% if unavailable %}
@@ -14,8 +14,11 @@
                     {% endif %}
                 <h3>Make a booking:</h3>
                 <form method="POST" class="text-center text-hhblack pt-5">
-                    {{ booking_form | crispy }}
                     {% csrf_token %}
+                    {{ booking_form.customer_id.as_hidden }}
+                    {{ booking_form.pitch_type | as_crispy_field }}
+                    {{ booking_form.date_from| as_crispy_field }}
+                    {{ booking_form.date_to| as_crispy_field  }}
                     <button type="submit" value="ok" class="btn cta-btn text-hhwhite">Submit
                     </button>
                 </form>

@@ -79,7 +79,7 @@ class Booking(models.Model):
     ]
     booking_id = models.AutoField(primary_key=True, unique=True)
     customer_id = models.ForeignKey(
-        NewUser, on_delete=models.PROTECT
+        NewUser, on_delete=models.PROTECT, default="1"
     )
     pitch_type = models.ForeignKey(
         BusinessVariables, on_delete=models.PROTECT, default=""

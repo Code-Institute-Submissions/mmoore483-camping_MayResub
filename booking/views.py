@@ -25,6 +25,10 @@ class BookingPage(View):
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
             form = BookingForm(data=request.POST)
+            update_form = form.save(commit=False)
+            current_user = request.user.customer_id
+            customer_id = NewUser.objects.get(customer_id=current_user)
+            update_form.customer_id = customer_id
             unavailable = False
             if form.is_valid():
                 pitch_type = form.cleaned_data.get("pitch_type")

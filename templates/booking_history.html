@@ -18,6 +18,7 @@
                     <th>Date From</th>
                     <th>Date To</th>
                     <th>Status</th>
+                    <th>Edit</th>
                 </thead>
                 <tbody>
                     {% for booking in bookings %}
@@ -35,6 +36,10 @@
                             {{ booking.date_to }}
                         </td>
                         <td>
+                            {{ booking.status }}
+                        </td>
+                        <td>
+                            {% if booking.date_from}
                             {{ booking.status }}
                         </td>
                     </tr>

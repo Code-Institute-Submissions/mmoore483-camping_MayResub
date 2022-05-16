@@ -7,4 +7,5 @@ class BookingForm(forms.ModelForm):
     """ Simple form for customer reservation request"""
     class Meta:
         model = Booking
-        fields = ("pitch_type", "date_from", "date_to")
+        fields = ("customer_id", "pitch_type", "date_from", "date_to")
+
