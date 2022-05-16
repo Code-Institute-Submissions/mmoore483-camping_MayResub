@@ -1,14 +1,13 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import CustomAccountManager, Booking, BusinessVariables
+from .models import CustomAccountManager, Booking, BusinessVariables, NewUser
 from .forms import BookingForm
 from datetime import timedelta
 
-"""Render the home page """
-
 
 class Home(View):
+    """Render the home page """
     def get(self, request):
         return render(request, "index.html")
 

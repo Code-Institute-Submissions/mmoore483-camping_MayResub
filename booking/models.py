@@ -4,23 +4,27 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager,
 )
-from cloudinary.models import CloudinaryField
+
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
-"""Business Variable table to set up the types of pitches and quantities """
+
 class BusinessVariables(models.Model):
+    """Business Variable table to set up the types of pitches and quantities """
+
     pitch_type = models.CharField(max_length=10)
     qty = models.SmallIntegerField(default=20)
 
     def __str__(self):
         return self.pitch_type
 
-"""Creation of users both superusers and customers """
+
 class CustomAccountManager(BaseUserManager):
+    """Creation of users both superusers and customers """
+
     def create_superuser(self, email, password, **other_fields):
 
         other_fields.setdefault("is_staff", True)
@@ -30,7 +34,8 @@ class CustomAccountManager(BaseUserManager):
         if other_fields.get("is_staff") is not True:
             raise ValueError("Superuser must be assigned to is_staff=True.")
         if other_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must be assigned to is_superuser=True.")
+            raise ValueError(
+                "Superuser must be assigned to is_superuser=True.")
 
         return self.create_user(email, password, **other_fields)
 
@@ -64,8 +69,9 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.first_name
 
-"""Booking table to hold reservation details and be queried in views """
+
 class Booking(models.Model):
+    """Booking table to hold reservation details and be queried in views """
     PENDING = "P"
     CANCELLED = "C"
     APPROVED = "A"
@@ -75,13 +81,17 @@ class Booking(models.Model):
         (APPROVED, "Approved"),
     ]
     booking_id = models.AutoField(primary_key=True, unique=True)
+    customer_id = models.ForeignKey(
+        NewUser, on_delete=models.PROTECT
+    )
     pitch_type = models.ForeignKey(
         BusinessVariables, on_delete=models.PROTECT, default=""
     )
     date_from = models.DateField(default=timezone.now)
     date_to = models.DateField(default=timezone.now)
 
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default="P")
+    status = models.CharField(
+        max_length=2, choices=STATUS_CHOICES, default="P")
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
