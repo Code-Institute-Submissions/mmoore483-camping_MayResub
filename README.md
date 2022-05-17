@@ -3,14 +3,39 @@ Portfolio Project 4 Full Stack Toolkit - Code Institute
 Find the app [here](https://heatherhope-camp.herokuapp.com/)
 
 # About
-The Heather Hope Campsite is a fictional campsite set in the vast expanse of the North York Moors, a place to go for respite from a busy life and adventure. Ever popular, the campsite requires an app with integrated booking service to manage bookings and avoid disappointment for customers.
+The Heather Hope Campsite is a fictional campsite set in the vast expanse of the North York Moors, a place to go for respite from a busy life and adventure. Ever popular, the campsite requires an app with integrated booking service to manage bookings and avoid disappointment for customers. As the business is still expected to receive bookings traditionally via phone calls or "walk-ins" the booking service will still be manually administrated with regards to approvals for bookings.
 
 Note all screen shots have been taken with the iPhone SE responsive sizer (from chrome) and 2560 x 1600 px as a standard 13" laptop screen.
 
-![BookingPage](READMEImages/BookActual.PNG)
-
 # User Experience
 The app will largely be managed by the campsite staff and thus has two main user perspectives: customers and the business.
+
+## Business Goals
+Heather Hope is a (fictional) campsite that can host a range of camping arrangements from tents to caravans, motorhomes or vans. The goal of building this booking service is to:
+- provide potential customers with an indication of whether the site is available for the pitch type they require at the dates they desire
+- keep track of their bookings
+- begin building a consistent brand with themic styling
+
+## User Goals
+This site will be used by both business staff and customers thus must consider both perspectives.
+
+From a business staff perspective, the site needs to:
+- Allow staff to manually approve bookings and send an alert to the customer of the outcome
+- Be able to edit the pitches available (both type and number)
+- Be able to review bookings
+- Be able to manually add bookings from walk-ins or mobile attempts
+
+From a user perspective, the site needs to:
+- Be easy to navigate
+- Show availability of potential bookings
+- Submit bookings for approval
+- Review booking history
+- Edit potential bookings
+- Cancel potential bookings
+- See contact information for the site
+- See marketing material to help make the decision of whether they want to visit the site
+
+A number of features are requried to carry out these needs and these will be discussed throughout this README.
 
 ## User Stories
 This project has been tracked using [GitHub Projects](https://github.com/users/mmoore483/projects/2) which contains all the current user stories.
@@ -21,25 +46,44 @@ Whilst the focus of this project is on the booking capability, the wireframes co
 
 <hr>
 
-### WireFrames
+<strong>Home Page - Wireframe</strong>
 
-<strong>Home Page</strong>
-
-The home page will be responsive with the top menu dropping into a hamburger icon on smaller screen sizes as well as a sticky nav bar to ensure the user can always get to the booking page within a single click. To achieve this, the [scrolling nav](https://startbootstrap.com/template/scrolling-nav) BootStrap theme will be used.
+The home page will be responsive with the top menu dropping into a hamburger icon on smaller screen sizes as well as a sticky nav bar to ensure the user can always get to the booking page within a single click. This navbar will be consistent across the entire site for ease of navigation. The "Log in" option on the menu will also update to "Sign Out" once a user is logged in. To achieve the desired look, bootstrap styling will be used. Other themic features include a hero image with a call to action button encouraging potential customers to book. This image can be used in other places (e.g. social media) to allow for brand building. Below that, there will be calls to visit the other marketing-type pages on the site including a photo library of facilities and views. 
 
 ![Home Page](READMEImages/WFHome.png)
 
-<strong>Log In/Sign Up</strong>
+<strong>Home Page - Actual</strong>
+The current home page uses a beautiful image of heather on moorland, consistent with the name and location of the campsite. This image is used across the site for consistent styling and colours for the theme were taken from this image. The navbar is sticky and also collapses down on smaller screen sizes. 
 
-The user requires capability to sign up/log in so that they can make an account and manage their own bookings. Using an email address rather than a username should make it easier for users to remember their details for a site account that is likely to be rarely used. Additionally, the business can keep customer details on file in case of emergencies or last minute cancellations. The majority of the sign up and log in functionality will be achieved using the Django admin site and account templates with the same BootStrap theme as other pages.
+In the future, the circular links to other pages will be included as those pages are developed - enough space has been left on the laptop views to make this look more appealing.
 
-![Log In Page](READMEImages/WFLogin.png)
+![Home Page Mobile](READMEImages/home-mobile.png)![Dropdown Menu](READMEImages/dropdown-menu-mobile.png) ![Home Page Laptop](READMEImages/home-laptop.png)
 
-<strong>Book</strong>
+<strong>Log In/Sign Up/Sign Out - Intention</strong>
+
+The user requires capability to sign up/log in so that they can make an account and manage their own bookings. Using an email address rather than a username should make it easier for users to remember their details for a site account that is likely to be rarely used. Additionally, the business can keep customer details on file in case of emergencies or last minute cancellations. The majority of the sign up and log in functionality will be achieved using the Django admin site and account templates with the same styling as other pages.
+Note: the wireframe has been removed from the readme as I didn't feel it was adding anything: it was essentially a simple form, the same as the standard allauth template.
+
+<strong>Log In/Sign Up/Sign Out - Actual</strong>
+As desired, a custom model was created so that only email was required to create an account and sign in - not a username. The styling is the same as that of the rest of the site however there is an overlay with one of the accent colours
+
+![login mobile](READMEImages/signin-mobile.png)
+![logout mobile](READMEImages/signout-mobile.png)
+![sign up mobile](READMEImages/signup-mobile.png)
+
+<strong>Book - Wireframe</strong>
 
 The booking page will be kept simple with the desire pitch type and dates (preferably with a date picker as this is a better visual for the user but can also restrict data entry). One the submission button has been pressed, the database will be queried and availability displayed back to the user.
 
-![Booking Page](READMEImages/WFBooking.png)
+![Booking Page Wireframe](READMEImages/WFBooking.png)
+
+<strong>Book - Actual</strong>
+
+The booking page has been kept simple however does not contain a date selector as desired during planning - this can be implemented at a later date. The form is simple and is designed with a secondary accent colour overlay for consistent styling. Prior to access to the booking form, a user must be signed in to ensure that any booking forms submitted could be tied to a customer which the business could contact if required. 
+
+![Book but login first](READMEImages/book-loginfirst-mobile.png)
+![Book](READMEImages/bookingform-mobile.png)
+
 
 <strong>Photos</strong>
 
@@ -64,7 +108,7 @@ There needs to be an area to set business variables such as the different campin
 
 The final table is for the bookings themselves, this will tie in the customer_id where one customer can have multiple bookings however each booking can only have one customer. Therefore this is a one (customer_id) to many (Booking) relationship. The Booking table will also have a unique ID, this will also allow users to query the status of their booking in communication with the business. The booking also requires the pitch type and the dates at which the booking is expected to take place. The status will be pending if available, confirmed if accepted by the business administrators and cancelled if rejected or the user chooses to cancel their booking. Finally, the created_on field can be used to sort bookings so that the business administrators can accept bookings on a first-come-first-serve basis. 
 
-![Database Diagram](READMEImages/DBDiagram.png)
+![Database Diagram](READMEImages/DB-diagram.png)
 
 <hr>
 
@@ -78,28 +122,43 @@ The final table is for the bookings themselves, this will tie in the customer_id
 
 ## Surface
 
-The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrolling-nav) has been used and unadapted at this time - a future iteration is planned to use a heather filled hero-image with shades of purple used to accent the theme. 
+The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrolling-nav) has been adapted for use in this project and modified with standard bootstrap classes as well as unique styling.
+
+The background image used in the site (beautiful healther in moorland) was found on [unsplash](https://unsplash.com/photos/f44QzL2ynzo?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink) and the colour theme was selected from this image using the colour picker tool on Chrome. The site's colour palette is comprised of a dark blue/black colour and a white shade as these colours provide the best contrast and have been used for text throughout the site. The purple/pink and green colour are used as accents and generally have been made more transparent in order to not detract from the background image. 
+
+With regards to fonts, the cursive font of Arima Madurai is used to give visual appeal in main headings. The open sans font of Lato is easy to read and used for the majority of the site for that reason.
+
+![colour palette](READMEImages/themecolours.png)
 
 ## Features
+User Story | Ways in which met |
+---|---|
+Account Creation| An account can be created easily from the "Register" button featured on every page via the navbar. It is also accessible from the log in page and the booking page (providing you aren't already logged in).|
+Create a Booking| Once authenticated, it is possible to make a booking using the booking form. There is also feedback of direction to a booking successful page or a note that those dates are unavailabe and to try again. However, it does require a datepicker as manual entry of dates is difficult and not user-friendly.|
+Booking History| Once logged in, this feature is available on the navbar or you can choose to go to it from the booking successful page. It contains a table of all bookings the currently logged in user has made including the booking id (useful for referencing the booking if in contact with the Heather Hope Administration team), the pitch type, the dates selected and then an option to edit or delete the booking if they are in the future.|
+Easy Navigation| The navigation bar is sticky in instances where the page gets long. On small screens, the navbar becomes collapsible to allow better use of screen real estate with other features however the Home button is always available. On every page of the site, the most relevant next link is available via buttons e.g. the booking success page directs to booking history or to return home. |
+Creating a Brand| Across the site, a consistent image and colour scheme has been used. The cursive font used for the headings and "Welcome to Heather Hope Camping" text could easily be used to create a text logo of "Heather Hope" to be used across other media. The moorland image could also be used on the banner of a facebook page.|
+Approve/Reject Bookings| At present this feature is only possible using the standard django administration back end. However, in the future, this should be improved to be accessible through the site itself if the user is authenticated as an administrator with a custom page to achieve this.|
+Pitch Variation| The option of business variables e.g. pitch types and the number of each has been integrated into the model and the logic so these are editable in the django administration back end. However, in the future, this should be improved to be accessible through the site itself if the user is authenticated as an administrator. 
+<hr>
+<br>
 
-### Existing Features
+## Other Features
 
-- Generic Home Page
-- Sign Up
-- Log In
-- Create a booking (without confirmation)
+Feature | Advantages |
+---|---|
 
 
-### Features Left to Implement
-- Confirmation of booking request
-- Notification of booking status
-- Option for customer to cancel booking
-- Personalised Home Page
+
+## Features Left to Implement
+
+- Notification of booking status changes via email
 - A Photo Page
+- Business details available in the footer as well as a separate page
 - A Contact Form that automates sending an email to business
-- Restrict booking date selection based on database query
 - A date picker for the booking dates selection in Booking page
-- Automated Testing
+- The above date picker would block out unavailable dates visually during the selection process
+
 
 ## Testing
 
@@ -111,7 +170,7 @@ The BootStrap Theme [scrolling nav](https://startbootstrap.com/template/scrollin
 - Python [PEP8 online validator](http://pep8online.com/) No errors beyond formatting.
 
 ### Bugs
-- There has been some issues with the heroku app deployment including static files loading incorrectly and Internal Server Errors. I cannot confirm whether everything is working correctly at the time of project submission.
+- 
 
 # Deployment
 
@@ -175,7 +234,9 @@ To trial changes to the site without affecting the original, the GitHub Reposito
 - Code Institute for the template and course content
 - [BootStrap Theme](https://startbootstrap.com/template/scrolling-nav)
 - The Very Academy YouTube for [videos](https://www.youtube.com/watch?v=Ae7nc1EGv-A&ab_channel=VeryAcademy) on creating administration panels
+- [Background image](https://unsplash.com/photos/f44QzL2ynzo?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- Coolors co for creation of the colour palette image
 - LucidCharts for diagramming including the above database diagram
 - Mentor: Brian Machari
 - Tutor Support: James 
-- [Background image](https://unsplash.com/photos/f44QzL2ynzo?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- Student Support: Kieron
