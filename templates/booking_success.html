@@ -3,23 +3,24 @@
 {% load crispy_forms_tags %}
 
 <!-- About section-->
+<div class="accent2-overlay"></div>
 <section id="about">
     <div class="container pt-5">
         <div class="row pt-5">
             <div class="col-12">
-                <h2 class="text-center">Booking Successful!</h2>
+                <h2 class="text-center text-hhwhite">Booking Successful!</h2>
             </div>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center text-hhwhite">
             <a href="{% url 'home' %}" class="btn mt-2 mb-5">
-                <span class="icon">
+                <span class="icon text-hhwhite">
                     <i class="fas fa-chevron-left"></i>
                 </span>
-                <span class="">Return Home</span>
+                <span class="text-hhwhite">Return Home</span>
             </a>
             <a href="{% url 'booking_history' %}" class="btn mt-2 mb-5">
-                <span class="">See Bookings</span>
-                <span class="icon">
+                <span class="text-hhwhite">See Bookings</span>
+                <span class="icon text-hhwhite">
                     <i class="fas fa-chevron-right"></i>
                 </span>
             </a>

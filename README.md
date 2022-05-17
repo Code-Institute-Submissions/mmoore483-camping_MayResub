@@ -5,6 +5,8 @@ Find the app [here](https://heatherhope-camp.herokuapp.com/)
 # About
 The Heather Hope Campsite is a fictional campsite set in the vast expanse of the North York Moors, a place to go for respite from a busy life and adventure. Ever popular, the campsite requires an app with integrated booking service to manage bookings and avoid disappointment for customers.
 
+Note all screen shots have been taken with the iPhone SE responsive sizer (from chrome) and 2560 x 1600 px as a standard 13" laptop screen.
+
 ![BookingPage](READMEImages/BookActual.PNG)
 
 # User Experience

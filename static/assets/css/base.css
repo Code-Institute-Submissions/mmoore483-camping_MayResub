@@ -32,6 +32,26 @@ body {
     z-index: -1;
 }
 
+.accent1-overlay {
+    height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+    background-color: rgba(168, 65, 137, 0.75);
+    z-index: -1;
+}
+
+.accent2-overlay {
+    height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+    background-color: rgba(90, 103, 80, 0.5);
+    z-index: -1;
+}
+
 footer, nav {
     background-color: var(--HHblack);
 }
@@ -73,4 +93,8 @@ p {
 .flex-central {
     display: flex;
     justify-content: center;
+}
+
+.redirect-btn {
+    background-color: rgba(90, 103, 80, 0.75);
 }
