@@ -10,7 +10,7 @@
             <div class="col-lg-8">
                 {% if user.is_authenticated %}
                     {% if unavailable %}
-                        <p>That date range is unavailable, please choose another</p>
+                        <p class="text-hhwhite text-center text-weight-bold bg-danger">That date range is unavailable, please choose another</p>
                     {% endif %}
                 <h3 class="text-hhwhite">Make a booking:</h3>
                 <form method="POST" class="text-center text-hhwhite pt-5">
@@ -25,7 +25,7 @@
             
                 {% else %}
                 <div class="col-12 pt-5 text-center">
-                    <h3 class="text-hhblack text-weight-bold">You need to sign up before you can make a booking
+                    <h3 class="text-hhwhite text-weight-bold">You need to sign up before you can make a booking
                     </h3>
                     <div class="col-12 d-flex justify-content-around mt-4">
                         <a href="{% url 'account_signup' %}" class="btn redirect-btn text-hhwhite">
