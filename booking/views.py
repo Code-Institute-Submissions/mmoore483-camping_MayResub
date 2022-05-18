@@ -79,6 +79,7 @@ def booking_update(request, pk):
         current_user = request.user.customer_id
         customer_id = NewUser.objects.get(customer_id=current_user)
         update_form.customer_id = customer_id
+        update_form.status = "P"
 
         unavailable = False
 

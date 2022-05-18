@@ -92,15 +92,15 @@
             <p class="m-0 text-center text-hhwhite footer-text">Copyright &copy; Heather Hope 2022</p>
         </div>
     </footer>
-
+    <script>
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 2500);
+    </script>
+    
 </body>
 
 </html>
 
-<script>
-    setTimeout(function () {
-        let messages = document.getElementById('msg');
-        let alert = new bootstrap.Alert(messages);
-        alert.close();
-    }, 2500);
-</script>

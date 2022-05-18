@@ -130,7 +130,8 @@ With regards to fonts, the cursive font of Arima Madurai is used to give visual 
 
 ![colour palette](READMEImages/themecolours.png)
 
-## Features
+## User Stories - Achieved So Far
+The user stories names are from the project tracker found [here](https://github.com/users/mmoore483/projects/2).
 User Story | Ways in which met |
 ---|---|
 Account Creation| An account can be created easily from the "Register" button featured on every page via the navbar. It is also accessible from the log in page and the booking page (providing you aren't already logged in).|
@@ -143,14 +144,46 @@ Pitch Variation| The option of business variables e.g. pitch types and the numbe
 <hr>
 <br>
 
-## Other Features
+## Main Features
 
 Feature | Advantages |
 ---|---|
+Navbar| The sticky navbar is available across all pages for familiarity and ease of the user. The navbar is also collapsible so on small screens the links to other pages don't take up too much space or become compressed and difficult for the user to press. The navbar is also responsive to signed in users vs. signed out users which is a useful indication for users of the site.|
+Footer | The footer is the same across all pages too and in future, will be easy to update with contact details etc. as it is contained within a base template that all others inherit from.|
+Background Image| The background image is consistent across all of the site with different coloured transparent overlays for contrast promotion where text or forms are required. This quickly allows the site to be recognisable across different platforms in the future providing the same image is used. The coloured overlays are accent colours picked from the image itself allowing for a consistent use of colour that is aesthetically pleasing to some.|
+Call to action| The home page contains a call to action button that immediately takes the user to the main point of the site: a booking service.|
+Username = Email| The user only needs to enter an email and password to register for the site which is useful as usernames are often forgotten if the site is used inconsistently and becomes a chore for the user to reset etc. As the business is essentially a holiday/vacationing service, it's unlikely to be used frequently enough for details such as a username to be remembered.|
+Sign in before booking| Trying to access the booking page without signing in redirects the user to either log in or sign up. This ensures that contact details are available to the business should they need to contact the user after a booking.|
+Booking Form| The booking form itself contains pitch type from a dropdown selection however requires manual entry of the dates. There is very limited validation and this requires improvement. There is some validation in terms of submission in that if there is not a pitch available at the dates, it will inform the user with a message in red and ask them to try again. However it is possible to enter dates that are in the past and use letters which will cause the site to fail. As the business case is that an administrator will approve or cancel bookings, these errors are currently expected to be manually spotted.|
+Booking Successful| After a successful booking, the user is taken to a booking successful page that contains two links to either return home or to see the booking history.|
+Booking History| The booking history page contains a list of all successful bookings in a simple table. The table is responsive to screen size and allows for horizontal scrolling on smaller sizes. The table also contains the option to edit or cancel bookings providing that they are in the future.|
+Edit Booking| Providing the booking is in the future, users have the opportunity to edit a booking. Upon pressing edit, the user is directed to the booking form that is pre-filled with their current booking information. Once they have changed, their booking request is returned to the "pending" status and will require re-approval. The logic still checks the booking availability as per the normal booking form.|
+Cancel Booking| The booking cancellation option takes the user to an interim page where they are asked to ensure they really want to cancel. This gives the customer a reminder of the booking they want to cancel and a second chance to keep their booking just in case it was accidentally pressed.|
+Messages| Throughout the site, there are pop up messages that time out just as a visual feedback to user that their request has been accepted by the site. This includes signing in, signing out, making a booking etc.|
+
+<hr>
+
+### More images of features 
 
 
+![booking unavailable](READMEImages/unavailable-date-mobile.png)
+![booking success](READMEImages/bookingsuccess-mobile.png)
 
-## Features Left to Implement
+
+The following in screenshots showing the original booking history, editing the top result and then cancelling the booking altogether.
+
+![booking history](READMEImages/booking-history-laptop.png)
+![edit booking](READMEImages/editbooking-laptop.png)
+![cancel booking confirmation](READMEImages/cancelconfirmation-laptop.png)
+![cancel booking](READMEImages/cancelled-laptop.png)
+
+Here is an example of the messages around the site
+
+![sign out message](READMEImages/signout-success-mobile.png)
+
+<br>
+
+## Future Features
 
 - Notification of booking status changes via email
 - A Photo Page
