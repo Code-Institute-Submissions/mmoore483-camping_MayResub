@@ -90,7 +90,6 @@ The booking page has been kept simple however does not contain a date selector a
 
 The photo page is for the business to entice customers with beautiful images of the campsite. The page layout is simple three column on large screens and one column on small screens. This is a nice-to-have feature that won't be a priority.
 
-![Photo Page](READMEImages/WFPhotos.png)
 
 
 <strong>Contact Us</strong>
@@ -187,6 +186,7 @@ Here is an example of the messages around the site
 ## Future Features
 
 - Notification of booking status changes via email
+- Administration with regards to approving bookings etc. will be done through the main site with role dependent access rather than going to the django administration part of the app.
 - A Photo Page
 - Business details available in the footer as well as a separate page
 - A Contact Form that automates sending an email to business
