@@ -1,5 +1,6 @@
 # Heather Hope Camping
 Portfolio Project 4 Full Stack Toolkit - Code Institute
+
 Find the app [here](https://heatherhope-camp.herokuapp.com/)
 
 # About
@@ -164,7 +165,7 @@ Messages| Throughout the site, there are pop up messages that time out just as a
 <hr>
 
 ### More images of features 
-
+Images displayed are contained within the READMEImages folder as well as other screenshots of the site. Below are a few demonstrating the features from the table above.
 
 ![booking unavailable](READMEImages/unavailable-date-mobile.png)
 ![booking success](READMEImages/bookingsuccess-mobile.png)
@@ -195,15 +196,69 @@ Here is an example of the messages around the site
 
 ## Testing
 
+### User Story Testing
+Has been commented on above.
+
 ### Validator Testing
 - HTML [W3C Validator](https://validator.w3.org/) No Errors on the Home, Log In, Register or Book pages.
 
-- CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/) No errors but some warnings about variable use.
+- CSS [jigsaw validator](https://jigsaw.w3.org/css-validator/) No errors found.
 
-- Python [PEP8 online validator](http://pep8online.com/) No errors beyond formatting.
+- Python Pylint ha sbeen used throughout code creation and the main files have been run through the [PEP8 online validator](http://pep8online.com/) without error except line too long where it's 81 characters instead of 80 for example.
+
+### Functional Testing (Manual)
+
+Testing is undertaken on a desktop on Chrome using the iPhone SE filter and the 2560 x 1600 px screen size to check for responsiveness and legibility of text throughout the site.
+
+
+Feature/Page| Test | Pass/Fail|
+---|---|---|
+Navbar| Click each link on the navbar to make sure it went to the correct location| Pass|
+Navbar| Ensure navbar collapses down on smaller screens and links remain clickable| Pass|
+Navbar| When logged out, check the navbar states "Home Register Login Book"| Pass|
+Navbar| When logged in, check the navbar states "Home Logout Bookings Book"|Pass|
+Sign Up| Check email validation works by entering an invalid email address| Pass|
+Sign Up| Check password validation works by entering two different passwords| Pass|
+Sign Up| Check password strength is validated by using the password "test"| Pass|
+Sign Up| Check email cannot be used twice to sign up. Create an account once and then try to create another with the same email. |Pass|
+Sign Up| Create a valid account. Check this logs you in and receive the successful sign in message in green| Pass|
+Sign Up| Following the above test, check that the confirmation email is sent| Fail
+Messages| Check messages timeout and close automatically after a small amount of time| Pass|
+Messages| Check sign in message uses the user's name/email when popping up| Fail|
+Messages| Sign in, sign out, booking update, booking cancelled all timeout after a short period of time and disappear from the screen automatically| Pass|
+Book| Check the booking form is unavailable when no user is logged in| Pass|
+Book| Check the book page redirect sign up button works| Pass|
+Book| Check the book page redirect login button works| Pass|
+Book| Check the booking form pitch type is a drop down list that allows different selections to be made| Pass|
+Book| Check the date from form field only accepts numbers by attempting to enter "cat" itno the date field and submitting the form| Fail - this caused a server 500 error|
+Book| Check the date from form field only accepts future dates by entering 2021-01-01 in the date from field| Fail - this caused a booking successful response|
+Book| Check the form only accepts "available" spots by setting the Business Variable Motorhome pitch quantity to zero and then attempt to make a motorhome booking on the book page. This should return the form again with a message in red that the date was unavailable and to try again| Pass|
+Book| Fill the form in with the pitch type tent, the default dates (these should read the current date of testing) and press submit. This should take you to a booking_successful template page| Pass|
+Booking Successful| Check the booking successful return home button returns the user to the home page| Pass|
+Booking Successful| Check the booking successful return see bookings button takes the user to the Booking History Page| Pass|
+Booking History Page| Check the tent and default dates (these should read the current date of testing) entry appears in the booking history table| Pass|
+Booking History Page| Check the entry mentioned above has "unavailable" in the Edit column with the status "P"| Pass|
+Booking History Page| Make a new booking on the booking form using tomorrow's dates and the tent pitch type. Check the Booking History table contains this new entry and has the options to Edit Booking and Cancel Booking| Pass|
+Booking History Page| Go to the site's admin page and approve the booking created. Return to the booking history page and see if the status for that booking entry has been updated to say "A"| Pass|
+Booking History Page| Press the edit booking button from the entry created above and check it takes you to a pre-filled booking form page with the entry's booking details| Pass|
+Edit Booking| Following the above test, make a change in pitch type but keep the dates the same and resubmit the form. Check this action returns you to the Booking History page and brings up the message "Booking Updated."|Pass|
+Edit Booking| Following the above test, check the table has been updated with the new pitch type under the same booking ID with the status updated to "P"|Pass|
+Cancel Booking| Following the above test, press cancel booking on the table and check it takes you to a booking_delete page. (note the booking ID will also be in the url).|Pass|
+Cancel Booking| Following the above test, press the return button and ensure it takes you back to the booking history table|Pass|
+Cancel Booking| Following the above test, press the cancel button again and this time, press cancel booking on the booking delete page. Ensure this returns you to the Booking History page with the message "Booking Cancelled" and that the entry has been removed from the booking history table.|Pass|
+Booking History| Ensure the two links below the table, "return home" and "book again" take you to the correct locations (e.g. the home page and the booking form respectively)| Pass|
+Sign out| Following the previous testing where logging in was required, press Logout on the navbar and check it takes you to a sign out page asking whether you are sure you want to sign out| Pass|
+Sign out| Following the previous test, press the sign out button as confirmation. This should return you to the home page with a message saying "You have signed out."| Pass|
+Log In| Following the sign out testing, go to the navbar and press log in and ensure the account created previously allows access to the site| Pass|
+404 error| Go to the end of the url and add the word "cat", check this returns the user to a 404 page within the site| Fail|
+<hr>
+<br>
 
 ### Bugs
-- 
+- The log in messages requires a username which isn't available due to the email nature of log in. This causes the message to look weird and grammatically incorrect.
+- The date selection in booking form requires validation
+- No confirmation email is sent from the site (need to include email details for django)
+- Need to create a custom 404 page that would help the user stay on the website and direct them to where they need to go. 
 
 # Deployment
 

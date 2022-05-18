@@ -10,7 +10,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class BusinessVariables(models.Model):
-    """Business Variable table to set up the types of pitches and quantities """
+    """Business Variable table to set up the types of pitches and
+    quantities
+    """
 
     pitch_type = models.CharField(max_length=10)
     qty = models.SmallIntegerField(default=20)
@@ -93,4 +95,3 @@ class Booking(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
-

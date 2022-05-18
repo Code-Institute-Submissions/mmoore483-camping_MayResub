@@ -92,6 +92,8 @@
             <p class="m-0 text-center text-hhwhite footer-text">Copyright &copy; Heather Hope 2022</p>
         </div>
     </footer>
+
+    {% block postloadjs %}
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');
@@ -99,6 +101,7 @@
             alert.close();
         }, 2500);
     </script>
+    {% endblock %}
     
 </body>
 
